@@ -29,7 +29,7 @@ sharepoint = SharePoint(
 )
 
 
-@scheduler.task('interval', minutes=1)
+@scheduler.task('interval', minutes=1440)
 def process_runner():
     dir = 'files'
 
