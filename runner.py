@@ -29,9 +29,10 @@ sharepoint = SharePoint(
 )
 
 
-@scheduler.task('interval', minutes=10)
+@scheduler.task('interval', minutes=3)
 def process_runner():
     dir = 'files'
+    print('start')
 
     # 1
     path = os.path.join(os.path.dirname(__file__), dir)
@@ -39,6 +40,7 @@ def process_runner():
     for filename in os.listdir(path):
         os.remove(path + '/' + filename)
 
+    print('2')
 
     # 2
     surveys = limesurvey.get_survey_list()
@@ -48,6 +50,7 @@ def process_runner():
         limesurvey.save_survey_xlsx(survey['sid'], './files')
         files.append(f'{survey["sid"]}.xlsx')
 
+    print('3')
     # 3
     now = datetime.now()
 
@@ -55,6 +58,7 @@ def process_runner():
         name = f'{now.year}_{now.month}_{now.day}_{now.hour}_{now.minute}_sid_{filename}'
         sharepoint.upload_file('./files', filename, 'Archive', name)
 
+    print('4')
     # 4
     sharepoints_files = sharepoint.files_list('')
     for file in files:
