@@ -54,20 +54,3 @@ class SharePoint:
     def files_list(self, dir):
         self._folder = self.connect_folder(dir)
         return list(map(lambda obj: obj['Name'], self._folder.files))
-        
-
-# obj = SharePoint(
-#     url='https://arqaamgmbh.sharepoint.com/',
-#     username='katrina@arqaam.io',
-#     password='Q?o&4g&r!XsnciYc',
-#     site='https://arqaamgmbh.sharepoint.com/sites/Main',
-#     doc='Shared Documents/Archive',
-#     dir='Archive'
-# )
-# obj.upload_file('./files/', '124738.xlsx', 'Archive', 'df')
-# obj.download_file('./files/', 'Book.xlsx', '')
-# x = obj.files_list('')
-# for name in x:
-#     print(name)
-    # obj.download_file('./test2/', name, 'live')
-# obj.delete_file('number_of_unique_organisations_in_country.xlsx', 'live')
